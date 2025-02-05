@@ -400,6 +400,7 @@ bool CSettings::Save()
 	fprintf(file, "MultiplePartitions = %d\n", MultiplePartitions);
 	fprintf(file, "USBPort = %d\n", USBPort);
 	fprintf(file, "USBAutoMount = %d\n", USBAutoMount);
+	fprintf(file, "SDMode = %d\n", SDMode);
 	fprintf(file, "BlockIOSReload = %d\n", BlockIOSReload);
 	fprintf(file, "WSFactor = %0.3f\n", WSFactor);
 	fprintf(file, "FontScaleFactor = %0.3f\n", FontScaleFactor);
@@ -558,7 +559,11 @@ bool CSettings::ValidateURL(char *value, int type)
 
 bool CSettings::SetSetting(char *name, char *value)
 {
-	if (strcmp(name, "godmode") == 0)
+	if (strcmp(name, "SDMode") == 0)
+	{
+		SDMode = atoi(value);
+	}
+	else if (strcmp(name, "godmode") == 0)
 	{
 		godmode = atoi(value);
 		return true;
